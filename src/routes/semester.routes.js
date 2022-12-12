@@ -3,7 +3,7 @@ import { getSemester } from '../controllers/semester.controller.js';
 
 const router = Router();
 
-router.get('/semester', getSemester);
+router.get('/semester/:email', getSemester);
 
 // TODO: CREATE ROUTES FOR PROJECTS
 
