@@ -4,12 +4,11 @@ export const getSemester = async (req, res) => {
   try {
     const userEmail = req.params.email;
     const [subjects] = await pool.query(
-      'select su.subjectName, concat(d.docentName, " ", d.docentLastName) \
-      as docentFullName from subjectU as su \
-      right join studentSubjects as ss on su.idSubject=ss.idSubject\
-      left join student as s on ss.idStudent=s.idStudent\
-      left join docent as d on su.idDocent=d.idDocent\
-      where s.studentEmail=?',
+      'select S.subjectName, S.semester,\
+      concat(D.docentName, " ", D.docentLastName) as docentFullName\
+      from docent as D right join subjectU as S on D.idDocent = S.idDocent\
+      left join student as St on S.idSubject = St.idSubject\
+      where St.studentEmail=?',
       [userEmail]
     );
     res.json(subjects);
