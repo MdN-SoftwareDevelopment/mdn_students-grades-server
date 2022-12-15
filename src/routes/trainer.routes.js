@@ -3,7 +3,7 @@ import { getSubjectsTrainer } from '../controllers/trainer.controller.js';
 
 const router = Router();
 
-router.use('/trainer/subjects', getSubjectsTrainer);
+router.use('/trainer/subjects/:email', getSubjectsTrainer);
 
 // TODO: CREATE ROUTES FOR PROJECTS
 
