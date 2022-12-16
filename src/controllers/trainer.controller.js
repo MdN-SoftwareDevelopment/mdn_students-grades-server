@@ -4,9 +4,10 @@ export const getSubjectsTrainer = async (req, res) => {
   try {
     const docentEmail = req.params.email;
     const [subjects] = await pool.query(
-      'select S.subjectName \
-      from docent as D join subjectU as S on D.idDocent = S.idDocent \
-        where D.docentEmail=?',
+      'select SU.subjectName\
+      from docent as D left join docentSubject as DS on D.idDocent=DS.idDocent\
+      join subjectU as SU on DS.idSubject=SU.idSubject\
+      where D.docentEmail=?',
       [docentEmail]
     );
     res.json(subjects);
