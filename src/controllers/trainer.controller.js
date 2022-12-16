@@ -1,0 +1,17 @@
+import pool from '../db.js';
+
+export const getSubjectsTrainer = async (req, res) => {
+  try {
+    const docentEmail = req.params.email;
+    const [subjects] = await pool.query(
+      'select SU.subjectName\
+      from docent as D left join docentSubject as DS on D.idDocent=DS.idDocent\
+      join subjectU as SU on DS.idSubject=SU.idSubject\
+      where D.docentEmail=?',
+      [docentEmail]
+    );
+    res.json(subjects);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
