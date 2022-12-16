@@ -4,7 +4,7 @@ export const getUpdateGrades = async (req, res) => {
   try {
     const activity = req.params.idActivity;
     const [results] = await pool.query(
-      'SELECT CONCAT(S.studentName, \
+      'SELECT ASt.idActivityStudent, CONCAT(S.studentName, \
     " ", S.studentLastName) AS Student, \
     ASt.grade AS Grade, ASt.feedback AS Feedback \
     FROM activity AS A JOIN activityStudent AS ASt \
