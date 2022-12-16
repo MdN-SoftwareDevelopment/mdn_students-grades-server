@@ -6,11 +6,12 @@ export const getAverageOfAllActivities = async (req, res) => {
     const subjectName = req.params.subject;
     const [average] = await pool.query(
       'select avg(ASt.grade) as average\
-      from student as S join studentSubject as SS on S.idStudent=SS.idStudent\
-        join subjectU as SU on SS.idSubject=SU.idSubject\
-        join activity as A on SU.idSubject=A.idSubject\
-        join activityStudent as ASt on A.idActivity=ASt.idActivity\
-      where S.studentEmail=? and SU.subjectName=?',
+      from activityStudent as ASt \
+      left join studentSubject as SS on ASt.idStudentSubject=SS.idStudentSubject\
+      left join student as S on SS.idStudent=S.idStudent\
+      left join activity as A on ASt.idActivity=A.idActivity\
+      left join subjectU as SU on SS.idStudent=S.idStudent\
+      where SU.subjectName=? and S.studentEmail=?',
       [userEmail, subjectName]
     );
     res.json(average);
