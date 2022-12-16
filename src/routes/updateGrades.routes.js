@@ -3,7 +3,7 @@ import { getUpdateGrades } from '../controllers/updateGrades.controllers.js';
 
 const router = Router();
 
-router.get('/update', getUpdateGrades);
+router.get('/activity/:idActivity/activitystudents', getUpdateGrades);
 
 // TODO: CREATE ROUTES FOR PROJECTS
 
