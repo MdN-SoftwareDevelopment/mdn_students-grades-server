@@ -14,7 +14,7 @@ module.exports = {
     'prettier/prettier': ['warn'],
     'arrow-body-style': 'off',
     'prefer-arrow-callback': 'off',
-    'max-len': [1, { code: 80 }],
+    'max-len': [1, { code: 120 }],
     'comma-dangle': ['warn'],
     'multiline-ternary': 0,
     camelcase: 0,
